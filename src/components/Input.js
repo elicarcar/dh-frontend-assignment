@@ -11,6 +11,7 @@ const Input = styled.input.attrs(props => ({
   color: #798697;
   padding: 10px;
   outline: none;
+  text-indent: ${props => (props.displaySearchIcon ? "12px" : "0")};
 
   &:hover {
     border: 1px solid #4a4a4a;

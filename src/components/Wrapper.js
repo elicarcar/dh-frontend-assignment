@@ -1,27 +1,25 @@
 import styled from "styled-components";
-
-const Wrapper = styled.div.attrs(props => ({
-  beforeContent: props.beforeContent,
-  afterContent: props.afterContent
-}))`
+const Wrapper = styled.div`
   position: relative;
   display: inline-block;
-//   &:before {
-//     position: absolute;
-//     content: ${beforeContent};
-//     top: 8px;
-//     right: -9px;
-//     height: 10px;
-//     width: 24px;
-//   }
+  &::before {
+    display: ${props => (props.displaySearchIcon ? "block" : "none")};
+    position: absolute;
+    content: "⚲";
+    top: 4px;
+    left: 2px;
+    height: 10px;
+    width: 24px;
+    margin-right: 5px;
+    transform: rotate(-45deg);
+  }
 
   &:after {
-    // position: absolute;
-    // content: ${afterContent};
-    // top: 8px;
-    // right: -9px;
-    // height: 10px;
-    // width: 24px;
+    display: block;
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    content: " 8 ";
   }
 `;
 
