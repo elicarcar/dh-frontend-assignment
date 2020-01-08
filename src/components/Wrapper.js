@@ -2,7 +2,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   position: relative;
   display: inline-block;
-  &::before {
+  &:before {
     display: ${props => (props.displaySearchIcon ? "block" : "none")};
     position: absolute;
     content: "⚲";

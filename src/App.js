@@ -5,6 +5,7 @@ import List from "./components/List";
 import ListItems from "./components/ListItems";
 import Wrapper from "./components/Wrapper";
 import Nav from "./components/Nav";
+import ContactInput from "./components/ContactInput.js";
 
 function App() {
   let newValue = "";
@@ -41,37 +42,29 @@ function App() {
   console.log(_value);
   return (
     <div>
-      <Wrapper displaySearchIcon={displaySearchIcon}>
-        <Input
-          value={_value}
-          placeholder="Type or search.."
-          searchInput={searchInput}
-          handleFocus={id => handleFocus(id)}
-          handleBlur={handleBlur}
-          displaySearchIcon={displaySearchIcon}
-          type="text"
-        />
-      </Wrapper>
+      <ContactInput
+        value={_value}
+        handleBlur={handleBlur}
+        handleFocus={id => handleFocus(id)}
+        searchInput={searchInput}
+        displaySearchIcon={displaySearchIcon}
+      />
 
-      <Nav displayList={displayList}>
+      {/* <Nav displayList={displayList}>
         <List>
           {filteredNames
             .filter(name => nameToFilter.test(name.name) && name !== null)
-            .map((person, i) =>
-              filteredNames.length === 0 ? (
-                console.log("no match")
-              ) : (
-                <ListItems
-                  key={i}
-                  displayItem={displayItem}
-                  setValue={() => setValue(person.name)}
-                >
-                  {person.name}
-                </ListItems>
-              )
-            )}
+            .map((person, i) => (
+              <ListItems
+                key={i}
+                displayItem={displayItem}
+                setValue={() => setValue(person.name)}
+              >
+                {person.name}
+              </ListItems>
+            ))}
         </List>
-      </Nav>
+      </Nav> */}
     </div>
   );
 }
