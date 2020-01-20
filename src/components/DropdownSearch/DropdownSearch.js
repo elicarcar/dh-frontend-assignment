@@ -6,13 +6,7 @@ import ListItems from "./DropdownListItems/ListItems.js";
 import Label from "./DropdownLabel/DropdownLabel.js";
 import Input from "./DropdownInput/Input.js";
 
-const DropdownSearch = ({
-  setName,
-  contactNames = [],
-  inputRef,
-  navRef,
-  divRef
-}) => {
+const DropdownSearch = ({ setName, contactNames = [], inputRef, navRef }) => {
   const [nameToFilter, setNameToFilter] = useState(/(?:)/);
   const [displaySearchIcon, setDisplaySearchIcon] = useState(false);
   const [contactName, setContactName] = useState("");
@@ -36,8 +30,11 @@ const DropdownSearch = ({
   };
 
   const getContact = name => {
-    setName(name);
     setContactName(name);
+  };
+
+  const getSelectedName = name => {
+    setName(name);
   };
 
   return (
@@ -64,7 +61,11 @@ const DropdownSearch = ({
                 name => nameToFilter.test(name.name) && name.name !== null
               )
               .map((person, i) => (
-                <ListItems key={i} handleClick={() => getContact(person.name)}>
+                <ListItems
+                  key={i}
+                  handleClick={() => getContact(person.name)}
+                  handleSelect={() => getSelectedName(person.name)}
+                >
                   {person.name}
                 </ListItems>
               ))

@@ -18,28 +18,24 @@ function App() {
     setWindowSize(newWindowHeightValue);
   }
 
-  function useWindowSize() {
-    useLayoutEffect(() => {
-      let divSize = 0;
-      if (navRef && inputRef) {
-        const { height } = divRef.current.getBoundingClientRect();
-        divSize = height;
-      }
+  useLayoutEffect(() => {
+    let divSize = 0;
+    if (navRef && inputRef) {
+      const { height } = divRef.current.getBoundingClientRect();
+      divSize = height;
+    }
 
-      if (divSize > windowSize / 2) {
-        navRef.current.style.top = "-270px";
-      } else {
-        navRef.current.style.top = "0px";
-      }
+    if (divSize > windowSize / 2) {
+      navRef.current.style.top = "-270px";
+    } else {
+      navRef.current.style.top = "0px";
+    }
 
-      window.addEventListener("resize", () => handleResize());
-      return () => {
-        window.removeEventListener("resize", () => handleResize());
-      };
-    }, [windowSize]);
-  }
-
-  useWindowSize();
+    window.addEventListener("resize", () => handleResize());
+    return () => {
+      window.removeEventListener("resize", () => handleResize());
+    };
+  }, [windowSize]);
 
   function onEnter() {
     return inputRef.current.focus();

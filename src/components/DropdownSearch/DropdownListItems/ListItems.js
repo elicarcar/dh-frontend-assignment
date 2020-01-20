@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const ListItems = styled.li.attrs(props => ({
+  onSelect: props.handleSelect,
   onClick: props.handleClick,
   displayItem: props.displayItem,
   id: props.id
