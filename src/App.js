@@ -26,7 +26,7 @@ function App() {
     }
 
     if (divSize > windowSize / 2) {
-      navRef.current.style.top = "-270px";
+      navRef.current.style.top = "-265px";
     } else {
       navRef.current.style.top = "0px";
     }
@@ -45,12 +45,12 @@ function App() {
     return inputRef.current.blur();
   }
 
-  useKey("Enter", onEnter);
-  useKey("Escape", onESC);
-
   const setName = name => {
     setContact(name);
   };
+
+  useKey("Enter", onEnter);
+  useKey("Escape", onESC);
 
   return (
     <Container>

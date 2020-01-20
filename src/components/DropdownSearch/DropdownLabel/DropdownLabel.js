@@ -10,6 +10,7 @@ const Label = styled.label`
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 0.1);
   opacity: 0.5;
   user-select: none;
+  font-family: "Helvetica";
 `;
 
 export default Label;

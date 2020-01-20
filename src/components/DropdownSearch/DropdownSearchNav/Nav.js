@@ -5,7 +5,7 @@ const Nav = styled.nav`
   visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity 0.5s;
-  transition-delay: 0.1s;
+  transition-delay: 0.5s;
 `;
 
 export default Nav;
