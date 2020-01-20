@@ -1,86 +1,69 @@
 import React, { useState, useLayoutEffect, useRef } from "react";
-import { createGlobalStyle } from "styled-components";
+import DropdownSearch from "./components/DropdownSearch/DropdownSearch.js";
+import Container from "./components/Container/Container.js";
 import mock_names from "./MOCK_DATA.json";
-import ContactInput from "./components/ContactInput/ContactInput.js";
-import Container from "./components/Container.js";
-import Wrapper from "./components/ContactInput/ContactInput.js";
+import useKey from "./customHooks/useKey";
 
 function App() {
-  const filteredNames = mock_names;
-  const [displaySearchIcon, setDisplaySearchIcon] = useState(false);
-  const [_value, set_Value] = useState("");
-  const [nameToFilter, setNameToFilter] = useState(/(?:)/);
-  const [displayItem, setDisplayItem] = useState(true);
-  const [displayList, setDisplayList] = useState(false);
-  const [windowScroll, setWindowScroll] = useState(Math.round(window.scrollY));
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
   const navRef = useRef(null);
   const inputRef = useRef(null);
   const divRef = useRef();
+  const list = mock_names.filter(Boolean);
+  const [contact, setContact] = useState("");
 
-  useLayoutEffect(() => {
-    let divSize = 0;
-    if (navRef !== null && inputRef !== null) {
-      divSize = divRef.current.getBoundingClientRect().height;
-    }
-
-    if (divSize > windowSize / 2) {
-      navRef.current.style.top = "-270px";
-    } else {
-      navRef.current.style.top = "0px";
-    }
-
-    window.addEventListener("resize", () => handleResize());
-    return () => {
-      window.removeEventListener("resize", () => handleResize());
-      console.log("events removed");
-    };
-  }, [windowSize]);
+  const [windowSize, setWindowSize] = useState(window.innerHeight);
 
   function handleResize() {
     const newWindowHeightValue = window.innerHeight;
     setWindowSize(newWindowHeightValue);
   }
-  const searchInput = e => {
-    const newValue = e.target.value;
-    setNameToFilter(new RegExp(e.target.value, "i"));
-    set_Value(newValue);
+
+  function useWindowSize() {
+    useLayoutEffect(() => {
+      let divSize = 0;
+      if (navRef && inputRef) {
+        const { height } = divRef.current.getBoundingClientRect();
+        divSize = height;
+      }
+
+      if (divSize > windowSize / 2) {
+        navRef.current.style.top = "-270px";
+      } else {
+        navRef.current.style.top = "0px";
+      }
+
+      window.addEventListener("resize", () => handleResize());
+      return () => {
+        window.removeEventListener("resize", () => handleResize());
+      };
+    }, [windowSize]);
+  }
+
+  useWindowSize();
+
+  function onEnter() {
+    return inputRef.current.focus();
+  }
+
+  function onESC() {
+    return inputRef.current.blur();
+  }
+
+  useKey("Enter", onEnter);
+  useKey("Escape", onESC);
+
+  const setName = name => {
+    setContact(name);
   };
 
-  const handleFocus = () => {
-    setTimeout(function() {
-      setDisplaySearchIcon(true);
-    }, 100);
-  };
-
-  const setValue = (id, cb) => {
-    console.log(id);
-    set_Value(id);
-  };
-
-  const handleBlur = () => {
-    setDisplaySearchIcon(false);
-  };
-
-  console.log(_value);
-  console.log(navRef.current);
-
-  console.log("window size", windowSize);
   return (
     <Container>
-      <ContactInput
+      <DropdownSearch
         divRef={divRef}
-        value={_value}
-        handleBlur={handleBlur}
-        handleFocus={id => handleFocus(id)}
-        searchInput={searchInput}
-        displaySearchIcon={displaySearchIcon}
-        setValue={setValue}
-        nameToFilter={nameToFilter}
         navRef={navRef}
         inputRef={inputRef}
-        nameToFilter={nameToFilter}
-        contactNames={filteredNames}
+        contactNames={list}
+        setName={name => setName(name)}
       />
     </Container>
   );

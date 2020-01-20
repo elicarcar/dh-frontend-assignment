@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Container/> component renders correctly and have specified style rules 1`] = `
+.c0 {
+  position: fixed;
+  top: 250px;
+}
+
+<div
+  className="c0"
+/>
+`;

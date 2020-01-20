@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input/> matches the snapshot 1`] = `
+.c0 {
+  border: 1px solid #bfc5cd;
+  border-radius: 7px;
+  color: #4a4a4a;
+  padding: 10px;
+  outline: none;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+
+.c0::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.c0:hover {
+  border: 1px solid #4a4a4a;
+}
+
+.c0:focus {
+  text-indent: 12px;
+}
+
+.c0:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+.c0:not(:focus) ~ .c1 {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.c0:focus ~ .c2,
+.c0:not(:placeholder-shown) ~ .c2 {
+  -webkit-transform: scale(0.9) translateY(-135%) translateX(-10px);
+  -ms-transform: scale(0.9) translateY(-135%) translateX(-10px);
+  transform: scale(0.9) translateY(-135%) translateX(-10px);
+  opacity: 1;
+  padding-bottom: 2px;
+}
+
+<input
+  autoComplete="off"
+  className="c0"
+  id="contact-input"
+  name="contact"
+  placeholder="Type or Search.."
+  type="text"
+/>
+`;
+
+exports[`<ListItems/> matches the snapshot 1`] = `
+.c0 {
+  font-family: "Helvetica";
+  color: #798697;
+  line-height: 30px;
+  padding: 1px;
+  padding-left: 11px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.c0:hover {
+  color: #4a4a4a;
+  background: #f7f7f7;
+}
+
+<li
+  className="c0"
+/>
+`;
+
+exports[`<Nav/> matches the snapshot 1`] = `
+.c1 {
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: visibility 0s,opacity 0.5s;
+  transition: visibility 0s,opacity 0.5s;
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+
+.c2:not(:focus) ~ .c0 {
+  visibility: hidden;
+  opacity: 0;
+}
+
+<nav
+  className="c0 c1"
+/>
+`;
